@@ -31,31 +31,25 @@ export type Workspace = {
 };
 
 const folderOrder = [
+  "Overview",
   "Experience",
   "Projects",
-  "SystemDesign",
-  "LowLevelDesign",
-  "Blogs",
   "Resume",
   "Contact"
 ];
 
 const folderAccents: Record<string, string> = {
+  Overview: "text-teal-300",
   Experience: "text-amber-300",
   Projects: "text-teal-300",
-  SystemDesign: "text-sky-300",
-  LowLevelDesign: "text-emerald-300",
-  Blogs: "text-fuchsia-300",
   Resume: "text-orange-300",
   Contact: "text-cyan-300"
 };
 
 const fileOrder: Record<string, string[]> = {
+  Overview: ["Overview.md"],
   Experience: ["PublicisSapient.md", "Amdocs.md", "TCS.md", "Hexaware.md"],
   Projects: ["COMS.md", "NotificationPortal.md", "PANPortal.md"],
-  SystemDesign: ["Uber.md", "WhatsApp.md", "Netflix.md", "ParkingLot.md"],
-  LowLevelDesign: ["CarRental.md", "Splitwise.md", "SnakeGame.md"],
-  Blogs: ["HashMap.md", "Kubernetes.md", "Kafka.md", "PubSub.md"],
   Resume: ["Resume.md"],
   Contact: ["Contact.md"]
 };

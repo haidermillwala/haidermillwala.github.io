@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Haider Millwala | Portfolio",
     description:
-      "Browse Haider Millwala's career, projects, system design notes, blogs, resume, and contact details as a developer workspace.",
-    images: ["/workspace-preview.png"],
+      "Browse Haider Millwala's overview, experience, projects, resume, and contact details as a developer workspace.",
+    images: ["/profile.png"],
     type: "website"
   }
 };

@@ -7,25 +7,22 @@ import {
   BriefcaseBusiness,
   ChevronDown,
   Code2,
-  Cpu,
   Database,
   Download,
-  ExternalLink,
   FileText,
   Folder,
   Github,
   GitBranch,
   Mail,
   Menu,
-  Network,
   PanelLeft,
   Phone,
   Search,
   Server,
   Terminal,
+  UserRound,
   X
 } from "lucide-react";
-import Image from "next/image";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -34,20 +31,19 @@ import { cn } from "@/lib/utils";
 import type { Workspace, WorkspaceFile, WorkspaceFolder } from "@/lib/workspace";
 
 const folderIcons: Record<string, ComponentType<{ className?: string }>> = {
+  Overview: UserRound,
   Experience: BriefcaseBusiness,
   Projects: Code2,
-  SystemDesign: Network,
-  LowLevelDesign: Cpu,
-  Blogs: FileText,
   Resume: Database,
   Contact: Mail
 };
 
 export function PortfolioWorkspace({ workspace }: { workspace: Workspace }) {
   const initialFile =
-    workspace.files.find((file) => file.id === "Resume/Resume.md") ?? workspace.files[0];
+    workspace.files.find((file) => file.id === "Overview/Overview.md") ?? workspace.files[0];
   const [activeId, setActiveId] = useState(initialFile.id);
   const [openIds, setOpenIds] = useState<string[]>([
+    "Overview/Overview.md",
     "Resume/Resume.md",
     "Experience/PublicisSapient.md",
     "Projects/COMS.md"
@@ -295,7 +291,6 @@ function Editor({ file, workspace }: { file: WorkspaceFile; workspace: Workspace
           <aside className="space-y-5">
             <ProfilePanel workspace={workspace} />
             <ContextPanel file={file} />
-            <VisualPanel />
           </aside>
         </motion.div>
       </div>
@@ -308,6 +303,11 @@ function ProfilePanel({ workspace }: { workspace: Workspace }) {
   return (
     <section className="rounded-lg border border-slate-800 bg-slate-950/72 p-4">
       <div className="mb-4 flex items-start justify-between gap-3">
+        <img
+          src="/profile.png"
+          alt="Haider Millwala"
+          className="h-20 w-20 shrink-0 rounded-3xl border border-slate-700 bg-slate-950/80 object-cover object-top shadow-[0_20px_45px_-16px_rgba(14,165,233,0.28)]"
+        />
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.16em] text-teal-300">
             README.md
@@ -315,7 +315,7 @@ function ProfilePanel({ workspace }: { workspace: Workspace }) {
           <h2 className="mt-1 text-xl font-semibold text-white">Haider Millwala</h2>
           <p className="mt-1 text-sm text-slate-400">{workspace.stats.role}</p>
         </div>
-        <Server className="h-7 w-7 text-amber-300" />
+        <Server className="hidden h-7 w-7 text-amber-300 sm:block" />
       </div>
       <div className="grid grid-cols-2 gap-2">
         <Metric label="Experience" value={workspace.stats.experienceYears} />
@@ -375,25 +375,6 @@ function ContextPanel({ file }: { file: WorkspaceFile }) {
           ))}
         </div>
       ) : null}
-    </section>
-  );
-}
-
-function VisualPanel() {
-  return (
-    <section className="overflow-hidden rounded-lg border border-slate-800 bg-slate-950/72">
-      <Image
-        src="/workspace-preview.png"
-        alt="Developer workspace visual"
-        width={1536}
-        height={864}
-        className="aspect-video w-full object-cover"
-        priority
-      />
-      <div className="flex items-center justify-between gap-3 px-4 py-3 text-xs text-slate-400">
-        <span className="font-mono">workspace-preview.png</span>
-        <ExternalLink className="h-4 w-4 text-teal-300" />
-      </div>
     </section>
   );
 }
